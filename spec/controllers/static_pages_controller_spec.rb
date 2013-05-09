@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe StaticPagesController do
+  # Added on the tutorial vide to render view before executing the tests
+  render_views
 
   describe "GET 'home'" do
     it "returns http success" do
@@ -9,17 +11,20 @@ describe StaticPagesController do
     end
     
     # From the Video
-    # it "should do something" do
-    #  get 'home'
-    #  response.should have_content('title',
-    #        :content => "Ruby On Rails Tutorila Sample App | Home" )
-    #end
+   # it "should have selector / TAG with title and content" do
+   #   get 'home'
+   #   response.should have_selector("title",
+      #response.should have_content('Simple App')
+   #         :text => "Ruby On Rails Tutorial Sample App | Home" )
+            #:match => "Ruby On Rails Tutorial Sample App | Home" )
+   # end
 
     # from the Book online
-     it "should have the content 'Sample App'" do
-      visit '/static_pages/home'
+    it "should have the content 'Sample App'" do
+     visit '/static_pages/home'
+     page.should have_content('Sample App')
       #get 'home'
-      page.should have_content('Sample App')
+      #response.should have_content('Sample App')
     end
     
 end
