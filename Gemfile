@@ -36,3 +36,24 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+############ ADDED to GENERATED FILE ####################
+
+# Added for rspec tests as in tutorial video
+#group :development do
+	#gem 'rspec-rails', '2.0.0.beta.18'
+#end
+
+# Added for rspec tests as in tutorial video
+#group :test do
+  #gem 'rspec-rails', '2.0.0.beta.18'
+#end
+
+
+# Added for rspec tests as the rspec github instructions https://github.com/rspec/rspec-rails
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+end
+
+
+############ ADDED to GENERATED FILE ####################
