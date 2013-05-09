@@ -58,4 +58,7 @@ end
 # Sugested by https://www.relishapp.com/rspec/rspec-rails/v/2-2/docs
 gem "autotest"
 
+#Add spork dependencies for RSpec test running 
+gem "spork"
+
 ############ ADDED to GENERATED FILE ####################
