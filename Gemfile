@@ -55,5 +55,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
 end
 
+# Sugested by https://www.relishapp.com/rspec/rspec-rails/v/2-2/docs
+gem "autotest"
 
 ############ ADDED to GENERATED FILE ####################
