@@ -27,6 +27,7 @@ describe StaticPagesController do
       #response.should have_content('Sample App')
     end
     
+        
 end
 
   describe "GET 'contact'" do
@@ -34,6 +35,12 @@ end
       get 'contact'
       response.should be_success
     end
+    
+    it "should have not-empty body tag" do
+      get 'contact'
+      response.body.should_not =~ /<body>\s*<\/body>/
+    end
+    
   end
 
   describe "GET 'about'" do
