@@ -55,6 +55,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
 end
 
+# added https://github.com/rspec/rspec-rails and  http://stackoverflow.com/questions/8862967/visit-method-not-found-in-my-rspec
+gem "capybara"
+
 # Sugested by https://www.relishapp.com/rspec/rspec-rails/v/2-2/docs
 gem "autotest"
 
