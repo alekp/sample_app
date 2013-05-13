@@ -3,6 +3,10 @@ require 'spec_helper'
 describe StaticPagesController do
   # Added on the tutorial vide to render view before executing the tests
   render_views
+  
+  before(:each) do
+    @base_title = "Ruby on Rails Tutorial Sample App"
+  end
 
   describe "GET 'home'" do
     it "returns http success" do
@@ -48,6 +52,15 @@ end
       get 'about'
       response.should be_success
     end
+    
+    
+    #it "should have the right title" do
+    #  get 'about'
+     # response.should have_selector("title", 
+      #                              :content => "#{@base_title} | About")
+    #end
+
+    
   end
 
 end
