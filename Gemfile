@@ -62,6 +62,8 @@ gem "capybara"
 gem "autotest"
 
 #Add spork dependencies for RSpec test running 
-gem "spork"
+group :test do
+  gem "spork"
+end
 
 ############ ADDED to GENERATED FILE ####################
