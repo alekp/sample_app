@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- <title class="title">Ruby On Rails Tutorial Sample App | <%= @title %></title> -->
-		<title><%= title %></title> <!-- see application_helper.rb for title method-->
+		<!-- <title >Ruby On Rails Tutorial Sample App | <%= @page_title %></title> -->
+		 <!-- <title><%= title %></title> see application_helper.rb for title method  from the video-->
+		
+		<!--  From the book slightly modified-->
+		<title><%= full_title(@page_title) %></title>
 		
 		<%= stylesheet_link_tag    "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
