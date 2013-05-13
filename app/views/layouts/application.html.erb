@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title class="title">Ruby On Rails Tutorial Sample App | <%= @title %></title>
+		<!-- <title class="title">Ruby On Rails Tutorial Sample App | <%= @title %></title> -->
+		<title><%= title %></title> <!-- see application_helper.rb for title method-->
+		
 		<%= stylesheet_link_tag    "application", :media => "all" %>
 		<%= javascript_include_tag "application" %>
 		<%= csrf_meta_tags %> <!-- # Cross Site Request Forgurey -->
