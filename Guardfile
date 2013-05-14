@@ -20,6 +20,21 @@ guard 'rspec', :version => 2 do
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
+  
+  
+  # From the ebook
+  watch(%r{^app/controllers/(.+)_(controller)\.rb$})  do |m|
+    ["spec/routing/#{m[1]}_routing_spec.rb",
+     "spec/#{m[2]}s/#{m[1]}_#{m[2]}_spec.rb",
+     "spec/acceptance/#{m[1]}_spec.rb",
+     (m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" : 
+                       "spec/requests/#{m[1].singularize}_pages_spec.rb")]
+  end
+  watch(%r{^app/views/(.+)/}) do |m|
+    (m[1][/_pages/] ? "spec/requests/#{m[1]}_spec.rb" : 
+                       "spec/requests/#{m[1].singularize}_pages_spec.rb")
+  end
+  
 end
 
 
