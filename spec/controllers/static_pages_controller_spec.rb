@@ -15,17 +15,17 @@ describe StaticPagesController do
     end
     
     # From the Video
-   # it "should have selector / TAG with title and content" do
-   #   get 'home'
-   #   response.should have_selector("title",
-      #response.should have_content('Simple App')
-   #         :text => "Ruby On Rails Tutorial Sample App | Home" )
+   it "should have selector / TAG with h1 and content" do
+     get 'home'
+     #response.should have_content('Simple App')
+     response.should have_selector("title",
+            text: "Ruby On Rails Tutorial Sample App | Home" )
             #:match => "Ruby On Rails Tutorial Sample App | Home" )
-   # end
+   end
 
     # from the Book online
     it "should have the content 'Sample App'" do
-     visit '/static_pages/home'
+     visit home_path #'/static_pages/home'
      page.should have_content('Sample App')
       #get 'home'
       #response.should have_content('Sample App')
