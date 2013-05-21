@@ -47,6 +47,17 @@ describe "LayoutLinks" do
       page.should_not have_selector('title', text: '| Home')
     end
   end
+  
+  # the same test from above only with subject OBJ for use in Test cases should methods can be called on page
+  describe "Home page with subject" do
+    before { visit root_path } 
+
+    it { should have_selector('h1', text: 'Sample App') }
+    it { should have_selector 'title',
+                        text: "Ruby on Rails Tutorial Sample App" }
+    it { should_not have_selector 'title', text: '| Home' }
+  end
+  
 
   describe "Help page" do
 
