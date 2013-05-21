@@ -34,4 +34,12 @@ SampleApp::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  #http://ruby.railstutorial.org/chapters/sign-up#code-test_bcrypt_cost_factor  this is for testing users on purpose slow encription
+  # Speed up tests by lowering BCrypt's cost function.
+  require 'bcrypt'
+  silence_warnings do
+    BCrypt::Engine::DEFAULT_COST = BCrypt::Engine::MIN_COST
+  end
+  
 end

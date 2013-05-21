@@ -7,13 +7,14 @@
 		<!--  From the book slightly modified-->
 		<title><%= full_title(@page_title) %></title>
 		
-		<!-- Remove this due to link showing href in UI <%= stylesheet_link_tag    "application", :media => "all" %> <!-- Older Ruby before 1.8 :media => "screen" -->
+		<!-- Remove this due to link showing href in UI  Moved blue print CSS framework to vendor/assets/stylesheets folder-->
+		<%= stylesheet_link_tag    "application", media: "all" %> <!-- Older Ruby before 1.8 :media => "screen" -->
 		<%= javascript_include_tag "application" %>
 		
 		<!-- Added Stylesheets from blueprint CSS framework-->
 		<%= stylesheet_link_tag    "blueprint/screen", :media => "screen" %>
 		<%= stylesheet_link_tag    "blueprint/print", :media => "print" %>
-		
+				
 		<%= csrf_meta_tags %> <!-- # Cross Site Request Forgurey -->
 		
 		<%= stylesheet_link_tag    "blueprint/custom", :media => "screen" %>
@@ -23,10 +24,18 @@
 	<body>
 	
 		<%= render 'layouts/header'%>
-
+		<div id="main" style="min-height: 200px; margin-top: 50px;">
+			<div class="container">
+				<!--  http://ruby.railstutorial.org/chapters/sign-up#code-layout_flash -->
+				<% flash.each do |key, value| %>
+  					<div class="alert alert-<%= key %>"><%= value %></div>
+				<% end %> 
+				<%= yield %>
+				<%= render 'layouts/footer'%>			
+			</div>
+		</div>
 		<div class="container">
-			<%= yield %>
-			<%= render 'layouts/footer'%>
+			<%= debug(params) if Rails.env.development? %>
 		</div>
 	</body>
 </html>
