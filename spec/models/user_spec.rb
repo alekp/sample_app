@@ -24,6 +24,9 @@ describe User do
   it { should respond_to(:password_digest) }
   it { should respond_to(:password) }
   it { should respond_to(:password_confirmation) }
+  # Ch 8 addition sign in out 8.2.1 Remember me
+  it { should respond_to(:remember_token) }
+  it { should respond_to(:authenticate) }  
 
   it { should be_valid } # same as in IRC console  user.valid?  or test @user. should be_valid
 
@@ -127,7 +130,12 @@ describe User do
     it { should be_invalid }
   end
   
-  
+  # Ch 8 Remember ME test for token 
+  #http://ruby.railstutorial.org/chapters/sign-in-sign-out#code-remember_token_should_not_be_blank
+  describe "remember token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
+  end
   
 
 end
