@@ -26,7 +26,8 @@ describe "AuthenticationPages" do
       before { click_button "Sign in" }
 
       it { should have_selector('title', text: 'Sign in') }
-      it { should have_selector('div.alert.alert-error', text: 'Invalid') }
+      #it { should have_selector('div.alert.alert-error', text: 'Invalid') }
+      it { should have_error_message('Invalid') } # http://ruby.railstutorial.org/chapters/sign-in-sign-out#sec-rspec_custom_matchers
       
       #http://ruby.railstutorial.org/chapters/sign-in-sign-out#code-correct_signin_failure_test
       describe "after visiting another page" do
