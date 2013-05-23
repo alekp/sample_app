@@ -1,0 +1,22 @@
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <!-- even shorter solution from below-->  
+  <%= render @users %>
+    
+ <!-- <% @users.each do |user| %>
+    <!--<li>
+       # refactored to partial _user.html.erb 
+          <%= gravatar_for user, size: 52 %>
+      <%= link_to user.name, user %> 
+    </li>     
+     Render user below replaced calls for _user.html.erb
+    <%= render user %>
+      
+  <% end %>-->  
+</ul>
+
+<%= will_paginate %>

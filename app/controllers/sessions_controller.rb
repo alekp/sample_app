@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       # Sign the user in and redirect to the user's show page.
       sign_in user   # use existing rails authentication  sing_in method
       #redirect_to user  # redirects to user profile page  user/show.html.erb
+      #  redirect_back_or changed in Ch 9 http://ruby.railstutorial.org/chapters/updating-showing-and-deleting-users#code-friendly_session_create
       redirect_back_or user  # rhttp://stackoverflow.com/questions/14802851/ror-chapter-8-section-8-2-4-undefined-method-for-signin
     else
       # Create an error message and re-render the signin form.

@@ -6,12 +6,12 @@ FactoryGirl.define do
     # password_confirmation "foobar"
   # end
   
-  factory :user do
-    name     "Example User"
-    email    "user@example.com"
-    password "foobar"
-    password_confirmation "foobar"
-  end
+  # factory :user do
+    # name     "Example User"
+    # email    "user@example.com"
+    # password "foobar"
+    # password_confirmation "foobar"
+  # end
   
   # factory :user do
     # name     "Aleksandar Polizovski"
@@ -19,4 +19,17 @@ FactoryGirl.define do
     # password "foobar"
     # password_confirmation "foobar"
   # end
+  
+  # Ch 9 Factory setup
+  factory :user do
+    sequence(:name)  { |n| "Person #{n}" }
+    sequence(:email) { |n| "person_#{n}@example.com"}
+    password "foobar"
+    password_confirmation "foobar"
+    
+    factory :admin do
+      admin true
+    end
+  end
+    
 end

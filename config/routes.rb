@@ -17,8 +17,8 @@ SampleApp::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
   
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :users # generates REST URI resources: GET POST PUT Destroy/DELETE
+  resources :sessions, only: [:new, :create, :destroy] # same as above only for 3 actions in Session controller
   
   root to: 'static_pages#home'
   

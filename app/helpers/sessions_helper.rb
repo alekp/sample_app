@@ -8,7 +8,6 @@ module SessionsHelper
     #@current_user = user
   end
 
-  #TOTO sample app
   def current_user=(user)
     @current_user = user
   end
@@ -18,7 +17,7 @@ module SessionsHelper
   end
 
   def signed_in?
-    !@current_user.nil?
+    !current_user.nil? # had issues while i was changing it to  !@current_user.nil? did not find current user
   end
 
   def sign_out
@@ -35,6 +34,7 @@ module SessionsHelper
     user == @current_user
   end
 
+  #http://ruby.railstutorial.org/chapters/updating-showing-and-deleting-users#code-friendly_forwarding_test
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)
@@ -43,6 +43,6 @@ module SessionsHelper
   def store_location
     session[:return_to] = request.url
   end
-  #TOTO Sample app
+  
 
 end

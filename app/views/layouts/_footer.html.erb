@@ -8,6 +8,29 @@
       <li><%= link_to "About", about_path %></li> <!-- about_path -->
       <li><%= link_to "Contact", contact_path %></li>
       <li><a href="http://news.railstutorial.org/">News</a></li>
+    
+        <!-- check if user signed in show account menu -->
+        <% if signed_in? %>
+        <li><%= link_to "Users", users_path %></li>
+        <li id="fat-menu" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Account <b class="caret"></b>
+          </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", current_user %></li>
+              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Sign out", signout_path, method: "delete" %>
+              </li>
+            </ul>
+         </li>
+        <% else %> <!-- else show sign in link-->
+        <li>
+            <%= link_to "Sign in", signin_path%>
+        </li>
+        <% end %>
     </ul>
+    
   </nav>
 </footer>

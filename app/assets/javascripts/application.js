@@ -12,8 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+// Added in Ch 8 sign in out   bootstrap
+//= require bootstrap
 //= require_tree .
 
 
-/* Added in Ch 8 sign in out */
-//= require bootstrap
+

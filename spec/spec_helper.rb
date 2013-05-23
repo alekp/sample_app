@@ -1,4 +1,5 @@
-require 'rubygems'
+#http://www.rubyinside.com/how-to-rails-3-and-rspec-2-4336.html
+require 'rubygems' # if using spork --bootstrap  comment out 
 require 'spork'
 
 # from the book spork_helper.rb
@@ -10,7 +11,7 @@ Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
+  require 'rspec/rails'  # spork --bootstrap  ( if using spork with bootsrap neet to be comment out rails )
   require 'rspec/autorun'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
@@ -26,6 +27,7 @@ Spork.prefork do
     # config.mock_with :flexmock
     # config.mock_with :rr
     config.mock_with :rspec
+    #config.mock_with :cucumber
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
