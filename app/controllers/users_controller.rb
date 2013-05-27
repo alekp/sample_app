@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])  
     @page_title = 'User profile'
+    # Ch 10
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
   
   def new
@@ -68,10 +70,11 @@ class UsersController < ApplicationController
   # Ch 9 Authorization part
   private
     #http://ruby.railstutorial.org/chapters/updating-showing-and-deleting-users#code-authorize_before_filter
-    def signed_in_user
-      store_location # Ch 9 Friendly forward part
-      redirect_to signin_url, notice: "Please sign in." unless signed_in?
-    end
+    # def signed_in_user
+      # store_location # Ch 9 Friendly forward part
+      # redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    # end
+    # NOTE: CH 10 Refactored moved in session_helper.rb
     
     # checks with before filter to see if current user corresponds to URI user ID param if not redirects to roo_path or home page
     def correct_user

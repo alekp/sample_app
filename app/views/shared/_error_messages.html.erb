@@ -1,10 +1,13 @@
-<% if @user.errors.any? %>
+<!--% if @user.errors.any? %-->
+<!-- http://ruby.railstutorial.org/chapters/user-microposts#code-updated_error_messages_partial --> 
+<% if object.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-error">
       The form contains <%= pluralize(@user.errors.count, "error") %>.
     </div>
     <ul>
-    <% @user.errors.full_messages.each do |msg| %>
+        <!-- Ch 10 adding micropost changed from @user to object-->
+    <% object.errors.full_messages.each do |msg| %>
       <li>* <%= msg %></li>
     <% end %>
     </ul>

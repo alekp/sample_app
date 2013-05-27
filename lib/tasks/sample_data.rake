@@ -1,7 +1,10 @@
 namespace :db do
   desc "Fill database with sample data"
   task populate: :environment do
-    User.create!(name: "Example User",
+    # https://getsatisfaction.com/railstutorial/topics/sample_data_rake_cant_populate_my_db_on_chapter_10_4_1
+    #rake aborted!
+    #undefined local variable or method `admin' for main:Object
+    admin = User.create!(name: "Example User",
                  email: "example@railstutorial.org",
                  password: "foobar",
                  password_confirmation: "foobar")
@@ -17,5 +20,13 @@ namespace :db do
                    password_confirmation: password)
      # admin  colum by default is set to false  in migration script 20130523112100_add_admin_to_users.rb
     end
+    
+    #Ch 10 
+    users = User.all(limit: 6)
+    50.times do
+      content = Faker::Lorem.sentence(5)
+      users.each { |user| user.microposts.create!(content: content) }
+    end
+    
   end
 end

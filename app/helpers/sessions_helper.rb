@@ -19,6 +19,14 @@ module SessionsHelper
   def signed_in?
     !current_user.nil? # had issues while i was changing it to  !@current_user.nil? did not find current user
   end
+  
+  # Ch 10  Refactored moved from user_controller.rb  http://ruby.railstutorial.org/chapters/user-microposts#code-sessions_helper_authenticate
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to signin_url, notice: "Please sign in."
+    end
+  end
 
   def sign_out
     self.current_user = nil

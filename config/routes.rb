@@ -19,6 +19,7 @@ SampleApp::Application.routes.draw do
   
   resources :users # generates REST URI resources: GET POST PUT Destroy/DELETE
   resources :sessions, only: [:new, :create, :destroy] # same as above only for 3 actions in Session controller
+  resources :microposts, only: [:create, :destroy] # ch 10 microposts
   
   root to: 'static_pages#home'
   

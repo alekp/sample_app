@@ -5,7 +5,9 @@
   <div class="span6 offset3">
     <%= form_for(@user) do |f| %>
     
-      <%= render 'shared/error_messages' %> <!-- renders any error messages -->
+      <!-- <%= render 'shared/error_messages' %>  renders any error messages -->
+      <%= render 'shared/error_messages', object: f.object %> <!-- Ch 10 added after microposts resource addition-->
+      
 
       <%= f.label :name %>
       <%= f.text_field :name %>

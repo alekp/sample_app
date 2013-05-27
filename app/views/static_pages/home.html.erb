@@ -1,27 +1,30 @@
-<!-- <!DOCTYPE html>
-<html>
-	<h1>Home Sample App</h1>
-	<head>
-		<title class="title">Ruby On Rails Tutorial Sample App | <%= @title %></title>
-	</head>
-
-	<body> -->
-		<div class="center hero-unit">
-		  <h1>Welcome to the Sample App</h1>
-		
-		  <h2>
-		    This is the home page for the
-		    <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a>
-		    sample application.
-		  </h2>
-		
-		  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-		</div>
-		
-		<%= link_to image_tag("rails.png", :alt => "Rails"), 'http://rubyonrails.org/' %>
-		<!-- <p>
-			Sample App
-		</p>
-	</body>
-
-</html> -->
+<% if signed_in? %>
+<!-- signed in user view -->
+    <div class="row">
+        <aside class="span4">
+            <section>
+                <%= render 'shared/user_info' %> <!-- parials _user_info.html -->
+            </section>
+            <section>
+                <%= render 'shared/micropost_form' %> <!-- parials _micropost_form.html -->
+            </section>
+        </aside>
+        <!-- adding microposts feed to home page when user logged in  http://ruby.railstutorial.org/chapters/user-microposts#code-home_with_feed-->
+        <!-- <div class="span8">
+          <h3>Micropost Feed</h3>
+          <%= render 'shared/feed' %>  <!-- render parial _feed.html -->
+        </div> -->
+    </div>
+<% else %>
+<!-- no user authenticated view-->
+    <div class="center hero-unit">
+        <h1>Welcome to the Sample App</h1>
+    
+        <h2> This is the home page for the <a href="http://railstutorial.org/">Ruby on Rails Tutorial</a> sample application. </h2>
+    
+        <%= link_to "Sign up now!", signup_path,
+        class: "btn btn-large btn-primary" %>
+    </div>
+    
+    <%= link_to image_tag("rails.png", alt: "Rails"), 'http://rubyonrails.org/' %>
+<% end %> 
