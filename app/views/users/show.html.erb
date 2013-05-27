@@ -7,9 +7,16 @@
 				<%= @user.name %> 
 			</h1>
 		</section>
+		<section>
+		    <!-- Ch 11 http://ruby.railstutorial.org/chapters/following-users#code-user_follow_form_profile_stats-->
+          <%= render 'shared/stats' %>
+        </section>
 	</aside>
     <!-- Ch 10 -->
     <div class="span8">
+         <!-- Ch 11 http://ruby.railstutorial.org/chapters/following-users#code-user_follow_form_profile_stats -->
+        <%= render 'follow_form' if signed_in? %>
+        <!-- Micropost related chappter-->
         <% if @user.microposts.any? %>
           <h3>Microposts (<%= @user.microposts.count %>)</h3>
           <ol class="microposts">

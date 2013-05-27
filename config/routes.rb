@@ -17,9 +17,24 @@ SampleApp::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
   
-  resources :users # generates REST URI resources: GET POST PUT Destroy/DELETE
+  #resources :users # generates REST URI resources: GET POST PUT Destroy/DELETE  REFACTORED BELOW IN Ch 11
+  
+  #Ch 11 Refactored for followers http://ruby.railstutorial.org/chapters/following-users#code-following_followers_actions_routes
+  # http://ruby.railstutorial.org/chapters/following-users#table-following_routes
+  resources :users do
+    member do
+      get :following, :followers
+    end
+    # Ch 11 :)  The other possibility, collection, works without the id, so that would respond to the URL /users/tigers (presumably to display all the tigers in our application). 
+    # collection do
+      # get :tigers # :))
+    # end
+  end
+  
+  
   resources :sessions, only: [:new, :create, :destroy] # same as above only for 3 actions in Session controller
   resources :microposts, only: [:create, :destroy] # ch 10 microposts
+  resources :relationships, only: [:create, :destroy] # Ch 11 
   
   root to: 'static_pages#home'
   

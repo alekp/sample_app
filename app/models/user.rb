@@ -15,6 +15,19 @@ class User < ActiveRecord::Base
 
   # Ch 10
   has_many :microposts, dependent: :destroy
+  # Ch 11  Relationship  folowwed_users by the current_user
+  has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+  # (Listing 11.10), which explicitly tells Rails that the source of the followed_users array is the set of followed ids.
+  has_many :followed_users, through: :relationships, source: :followed #  http://ruby.railstutorial.org/chapters/following-users#code-has_many_following_through_relationships
+ 
+  #Ch 11 Reverse Relationship for folowers to the current_user http://ruby.railstutorial.org/chapters/following-users#code-user_reverse_relationships
+  has_many :reverse_relationships, foreign_key: "followed_id",
+                                   class_name:  "Relationship",# have to include Class name  because otherwise Rails would look for a ReverseRelationship class, which doesn’t exist.
+                                   dependent:   :destroy
+  has_many :followers, through: :reverse_relationships, source: :follower 
+  # It’s also worth noting that we could actually omit the :source key in this case, using simply
+  # has_many :followers, through: :reverse_relationships
+  
 
   before_save { |user| user.email = email.downcase }
   # http://ruby.railstutorial.org/chapters/sign-in-sign-out#code-sign_in_function
@@ -31,6 +44,19 @@ class User < ActiveRecord::Base
   def feed
     # This is preliminary. See "Following users" for the full implementation.
     Micropost.where("user_id = ?", id)
+  end
+  
+  # Ch 11 http://ruby.railstutorial.org/chapters/following-users#code-following_p_follow_bang 
+  def following?(other_user)
+    relationships.find_by(followed_id: other_user.id)
+  end
+
+  def follow!(other_user)
+    relationships.create!(followed_id: other_user.id)
+  end
+  # http://ruby.railstutorial.org/chapters/following-users#code-user_unfollow
+  def unfollow!(other_user)
+    relationships.find_by(followed_id: other_user.id).destroy
   end
   
   # http://stackoverflow.com/questions/5622054/undefined-method-salt
