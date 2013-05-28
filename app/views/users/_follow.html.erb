@@ -1,0 +1,8 @@
+<%= form_for(current_user.relationships.build(followed_id: @user.id)) do |f| %>
+    <div>
+        <%= f.hidden_field :followed_id %> <!-- Finally, you’ll note that the follow/unfollow form doesn’t have any content other than the button, but it still needs to send the followed_id, which we accomplish with the hidden_field method, which produces HTML of the form-->
+    </div>
+    <%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<% end %>
+
+<!--Ch 11 Listing 11.25. A form for following a user. -->

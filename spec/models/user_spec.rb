@@ -27,12 +27,24 @@ describe User do
   # Ch 8 addition sign in out 8.2.1 Remember me
   it { should respond_to(:remember_token) }
   
-  #Ch 0 admin chech for user delete
+  # Ch 0 admin chech for user delete
   it { should respond_to(:admin) }
   it { should respond_to(:authenticate) }
   
-  #Ch 10 Microposts
+  # Ch 10 Microposts
   it { should respond_to(:microposts) }
+  it { should respond_to(:feed) }
+  
+  # Ch 11 
+  it { should respond_to(:relationships) }
+  it { should respond_to(:followed_users) }
+  # Ch 11  http://ruby.railstutorial.org/chapters/following-users#code-utility_method_tests
+  it { should respond_to(:followed_users) }  
+  it { should respond_to(:following?) }
+  it { should respond_to(:follow!) }
+  # Ch 11  http://ruby.railstutorial.org/chapters/following-users#fig-user_has_many_followers
+  it { should respond_to(:reverse_relationships) }
+  it { should respond_to(:followers) }
 
   it { should be_valid }
   it { should_not be_admin }
@@ -195,8 +207,35 @@ describe User do
       its(:feed) { should include(newer_micropost) }
       its(:feed) { should include(older_micropost) }
       its(:feed) { should_not include(unfollowed_post) }
+    end    
+  end # end micrposts
+  
+  # ch 11  http://ruby.railstutorial.org/chapters/following-users#code-utility_method_tests
+  describe "following" do
+    let(:other_user) { FactoryGirl.create(:user) }    
+    before do
+      @user.save
+      @user.follow!(other_user)
+    end
+
+    it { should be_following(other_user) }
+    its(:followed_users) { should include(other_user) }
+  
+   
+    # Ch 11  http://ruby.railstutorial.org/chapters/following-users#fig-user_has_many_followers
+    describe "followed user" do
+      subject { other_user }
+      its(:followers) { should include(@user) }
     end
     
+    
+    describe "and unfollowing" do
+      before { @user.unfollow!(other_user) }
+
+      it { should_not be_following(other_user) }
+      its(:followed_users) { should_not include(other_user) }
+    end
+ 
     
   end
 
