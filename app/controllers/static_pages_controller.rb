@@ -16,7 +16,7 @@ class StaticPagesController < ApplicationController
   end
 
   def about
-    @page_title ='About'
+    @page_title ='About Us'
   end
   
   def help
